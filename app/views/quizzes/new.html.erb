@@ -1,2 +1,19 @@
 <h1>クイズ新規投稿エリアテスト</h1>
 
+<%= form_for(@quiz) do |f| %>
+  <h2> 問題文　</h2>
+  <div>
+    <%= f.text_area :quiz, size: "50x7", placeholder:"問題文を入力してください。" %>
+  </div>
+
+    <h2>選択肢</h2>
+    <h4>答えにする選択肢を一つだけ選んでチェックをつけてください。</h4>
+    <% 4.times do |x| %>
+      <%= f.fields_for :choices do |c| %>
+      <%= "選択肢#{x+1}"%>
+      <%= c.text_field :choice, size: "40x1" %>
+      <%= c.check_box :answer_is, {}, "true", "false" %><div>
+    <% end %>
+  <% end %>
+  <%= f.submit "問題登録" %>
+<% end %>
