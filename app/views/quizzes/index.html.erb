@@ -6,6 +6,7 @@
 <% if user_signed_in? %>
   <%= current_user.name %> <div>
   <%= link_to "クイズ新規投稿はこちらから!", new_quiz_path %> <div>
+  <%= link_to "投稿されたクイズで遊ぶ", plays_path %> <div>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %> 
 <% else %>
   <%= link_to "新規登録", new_user_registration_path %><div>

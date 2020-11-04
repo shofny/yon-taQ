@@ -1,0 +1,13 @@
+<h1>クイズプレイ画面テスト</h1>
+<div>
+
+<% @quizzes.each do |quiz| %>
+<% x = 1 %>
+<% @choices = Choice.where(quiz_id: quiz.id) %>
+Q.<%= quiz.quiz %><br><br>
+<% @choices.each do |choice| %>
+<%= "#{x}." + choice.choice%><div>
+<% x += 1 %>
+<% end %>
+</div><br><br>
+<% end %>
