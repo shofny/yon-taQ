@@ -2,26 +2,20 @@
 <div>
 
 <%# <% @quizzes.each do |quiz| %>
-
 <%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
-  <% @quizzes = @rand_quiz[0] %>
-  <% x = 1 %>
+  <% @quizzes = session[:rand_quiz][0] %>
+ 
   <% @choices = Choice.where(quiz_id: @quizzes.id) %>
+  <% first_choice = @choices[0][:id] %>
   Q.<%= @quizzes.quiz %><br><br>
+
+    <% x = 1 %>
   <% @choices.each do |choice| %>
-    <%= f.radio_button :anwser, choice.id %>
-    <%= "#{x}." + choice.choice%><div>
-    <% x += 1 %>
+      <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
+      <%= "#{x}." + choice.choice%><div>
+      <% x += 1 %>
   <% end %>
-  <%# <%= f.hidden_field :quiz_id, value: @quizzes.id %>
-  <% rand_quiz = [] %>
-  <% @rand_quiz.each do |q| %>
-    <% rand_quiz << q.id %>
-  <% end %>
-  <%= f.hidden_field :rand_quiz, value: rand_quiz %>
-  <%= f.hidden_field :quiz_no, value: 0 %>
-  </div><br><br>
-  <%= f.submit "解答"%>
+    <%= f.submit "解答"%>
 <% end %>
 <br><br><br>
 <%= link_to "トップ画面に戻る", root_path %>

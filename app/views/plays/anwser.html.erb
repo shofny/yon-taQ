@@ -1,26 +1,24 @@
 <h1>画面遷移テスト</h1>
 
-<% @colect = Choice.find(@anwser)%>
+<% @colect = Choice.find(session[:anwser])%>
 <% if @colect.answer_is == true %>
 正解!!
+<% session[:correct_num] += 1%>
 <% else %>
 不正解
 <% end %>
 <br><br><br>
 
 <%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
-<%# <% @quizzes = Quiz.find(1) %>
 <% x = 1 %>
-<% @choices = Choice.where(quiz_id: @quizzes.id) %>
-Q.<%= @quizzes.quiz %><br><br>
-<% @choices.each do |choice| %>
-<%= f.radio_button :anwser, choice.id %>
-<%= "#{x}." + choice.choice%><div>
-<% x += 1 %>
-<% end %>
-<%= f.hidden_field :quiz_no, value: @q_no %>
-<%= f.hidden_field :rand_quiz, value: @rand_quiz%>
-</div><br><br>
+<% @choices = Choice.where(quiz_id: @quizzes['id']) %>
+<% first_choice = @choices[0][:id] %>
+Q.<%= @quizzes['quiz'] %><br><br>
+  <% @choices.each do |choice| %>
+      <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
+      <%= "#{x}." + choice.choice%><div>
+      <% x += 1 %>
+  <% end %>
 <%= f.submit "解答"%>
 <% end %>
 <br><br>
