@@ -6,7 +6,7 @@
 <% else %>
 不正解
 <% end %>
-<br>
+<br><br><br>
 
 <%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
 <%# <% @quizzes = Quiz.find(1) %>
@@ -14,11 +14,14 @@
 <% @choices = Choice.where(quiz_id: @quizzes.id) %>
 Q.<%= @quizzes.quiz %><br><br>
 <% @choices.each do |choice| %>
-<%= f.radio_button :anwser, "#{x}" %>
+<%= f.radio_button :anwser, choice.id %>
 <%= "#{x}." + choice.choice%><div>
 <% x += 1 %>
 <% end %>
-<%= f.hidden_field :quiz_id, value: @quizzes.id %>
+<%= f.hidden_field :quiz_no, value: @q_no %>
+<%= f.hidden_field :rand_quiz, value: @rand_quiz%>
 </div><br><br>
 <%= f.submit "解答"%>
 <% end %>
+<br><br>
+<%= link_to "トップ画面に戻る", root_path %>

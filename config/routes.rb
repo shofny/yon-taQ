@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :plays, only:[:index, :create] do
     collection do
       post 'anwser'
+      get 'result'
     end
   end
 
