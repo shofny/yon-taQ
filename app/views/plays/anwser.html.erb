@@ -1,0 +1,25 @@
+<h1>画面遷移テスト</h1>
+
+<% @colect = Choice.find(session[:anwser])%>
+<% if @colect.answer_is == true %>
+正解!!
+<% session[:correct_num] += 1%>
+<% else %>
+不正解
+<% end %>
+<br><br><br>
+
+<%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
+<% x = 1 %>
+<% @choices = Choice.where(quiz_id: @quizzes['id']) %>
+<% first_choice = @choices[0][:id] %>
+Q.<%= @quizzes['quiz'] %><br><br>
+  <% @choices.each do |choice| %>
+      <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
+      <%= "#{x}." + choice.choice%><div>
+      <% x += 1 %>
+  <% end %>
+<%= f.submit "解答"%>
+<% end %>
+<br><br>
+<%= link_to "トップ画面に戻る", root_path %>

@@ -1,0 +1,14 @@
+<h1>クイズ結果リザルト画面テスト</h1>
+
+<% @colect = Choice.find(session[:anwser])%>
+<% if @colect.answer_is == true %>
+正解!!
+<% session[:correct_num] += 1%>
+<% else %>
+不正解
+<% end %>
+<br><br><br>
+
+<%= "#{session[:quiz_no]}問中、#{session[:correct_num]}問正解" %>
+<br><br><br>
+<%= link_to "トップ画面に戻る", root_path %>
