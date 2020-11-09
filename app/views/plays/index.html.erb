@@ -9,13 +9,13 @@
  
     <% x = 1 %>
 
-  <h4>
-    <% @choices.each do |choice| %>
+  <% @choices.each do |choice| %>
+    <h4>
         <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
         <%= "#{x}." + choice.choice%><div>
         <% x += 1 %>
-    <% end %>
-  </h4>
+    </h4>
+  <% end %>
   <br><br>
     <%= f.submit "解答", class: "btn btn-primary" %>
 <% end %>

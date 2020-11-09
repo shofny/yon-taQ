@@ -10,13 +10,16 @@
 
 <%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
 <% x = 1 %>
-<h3><% @choices = Choice.where(quiz_id: @quizzes['id']) %></h3>
-<h4><% first_choice = @choices[0][:id] %>
-Q.<%= @quizzes['quiz'] %><br><br>
+<% @choices = Choice.where(quiz_id: @quizzes['id']) %>
+<% first_choice = @choices[0][:id] %>
+<h3>Q.<%= @quizzes['quiz'] %></h3>
   <% @choices.each do |choice| %>
+     <h4>
       <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
-      <%= "#{x}." + choice.choice%><div>
-      <% x += 1 %></h4>
+      <%= "#{x}." + choice.choice%>
+     </h4>
+     <div>
+      <% x += 1 %>
   <% end %>
  <%= f.submit "解答", class: "btn btn-primary" %>
 <% end %>
