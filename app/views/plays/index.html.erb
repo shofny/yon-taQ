@@ -4,6 +4,7 @@
  
   <% @choices = Choice.where(quiz_id: @quizzes.id) %>
   <% first_choice = @choices[0][:id] %>
+  
   <span class="quiztext">
   <h3>Q.<%= @quizzes.quiz %></h3></span>
  
