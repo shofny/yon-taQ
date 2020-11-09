@@ -1,0 +1,15 @@
+.quiztext{
+  white-space: pre-wrap;
+}
+
+.right{
+  color: red;
+  font-size: 30px;
+}
+
+.worng{
+  color: darkcyan;
+}
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";

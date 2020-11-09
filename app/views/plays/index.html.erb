@@ -1,21 +1,23 @@
-<h1>クイズプレイ画面テスト</h1>
-<div>
 
-<%# <% @quizzes.each do |quiz| %>
 <%= form_with(url: anwser_plays_path, method: :post, local: true) do |f|%>
   <% @quizzes = session[:rand_quiz][0] %>
  
   <% @choices = Choice.where(quiz_id: @quizzes.id) %>
   <% first_choice = @choices[0][:id] %>
-  Q.<%= @quizzes.quiz %><br><br>
-
+  <span class="quiztext">
+  <h3>Q.<%= @quizzes.quiz %></h3></span>
+ 
     <% x = 1 %>
-  <% @choices.each do |choice| %>
-      <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
-      <%= "#{x}." + choice.choice%><div>
-      <% x += 1 %>
-  <% end %>
-    <%= f.submit "解答"%>
+
+  <h4>
+    <% @choices.each do |choice| %>
+        <%= f.radio_button :anwser, choice.id, checked: first_choice == choice.id %>
+        <%= "#{x}." + choice.choice%><div>
+        <% x += 1 %>
+    <% end %>
+  </h4>
+  <br><br>
+    <%= f.submit "解答", class: "btn btn-primary" %>
 <% end %>
 <br><br><br>
 <%= link_to "トップ画面に戻る", root_path %>

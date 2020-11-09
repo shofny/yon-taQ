@@ -1,8 +1,7 @@
-<h1>画面遷移テスト</h1>
 
 <% @colect = Choice.find(session[:anwser])%>
 <% if @colect.answer_is == true %>
-正解!!
+<span class="right">正解!!</span>
 <% session[:correct_num] += 1%>
 <% else %>
 不正解
