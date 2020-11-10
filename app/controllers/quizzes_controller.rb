@@ -6,15 +6,17 @@ class QuizzesController < ApplicationController
   
   def new
     @quiz = Quiz.new
-    @quiz.choices.build
-    # 4.times{@quiz.choices.build}
+    4.times{ @quiz.choices.build }
   end
 
   def create
+    binding.pry
   @quiz = Quiz.new(quiz_params)
-  @quiz.save
-  redirect_to root_path
-
+    if @quiz.save
+    redirect_to root_path
+    else
+    render :new
+    end
     
   end
 
