@@ -4,4 +4,11 @@ class Quiz < ApplicationRecord
   has_many :choices
   accepts_nested_attributes_for :choices
 
+  validates_associated :choices
+
+  
+  validates :quiz, presence: true
+  
+
+
 end
