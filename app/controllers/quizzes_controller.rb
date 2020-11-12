@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
 
   def index
-
+    @total_quiz = Quiz.all
   end
   
   def new
