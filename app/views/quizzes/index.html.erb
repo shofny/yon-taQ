@@ -5,7 +5,7 @@
 
 
 <% if user_signed_in? %>
-  <h4>ログインネーム・<%= current_user.name %> </h4><div>
+  <h4>ログインネーム・<%= link_to "#{current_user.name}", user_path(current_user.id) %> </h4><div>
   <%= link_to "クイズ新規投稿はこちらから!", new_quiz_path, class: "btn btn-primary"%> <div><br>
   <%= link_to "投稿されたクイズで遊ぶ (ランダムで5問出題されます)", plays_path, class: "btn btn-primary"%> <div><br>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-primary"%> 
