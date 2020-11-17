@@ -63,3 +63,7 @@ group :production do
   gem 'rails_12factor'
 end
 # デプロイ時は必ずこれを入れてbundle install
+
+group :development do
+  gem 'rubocop', require: false
+end
