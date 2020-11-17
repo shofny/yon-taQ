@@ -1,4 +1,24 @@
 <h3>
 <%= "#{current_user.name}さんのマイページ"%>
 </h3>
+<br>
+
+<h4>
+投稿した問題一覧
+</h4>
+<br><br>
+<h4>
+  <% if @quiz.length == 0 %>
+    このアカウントでは問題が投稿されておりません。
+  <% else %>
+    <table border>
+    <% @quiz.each do |q|%>
+    <tr>
+      <td><%= "#{q.quiz.truncate(15)}" %></td>
+      <td><%= link_to "編集", edit_quiz_path(q.id) %></td>
+      <td>削除</td>
+    </tr>
+    <% end %>
+  <% end %>
+</h4>
 

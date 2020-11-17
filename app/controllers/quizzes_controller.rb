@@ -1,5 +1,7 @@
 class QuizzesController < ApplicationController
 
+  before_action :quiz_find, only: [:show, :edit, :update, :destroy]
+
   def index
     @total_quiz = Quiz.all
   end
@@ -16,7 +18,21 @@ class QuizzesController < ApplicationController
     else
     render :new
     end
-    
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+
+  def update
+    if @quiz.save
+    redirect_to root_path
+    else
+    render :edit
+    end
   end
 
   private
@@ -34,5 +50,10 @@ class QuizzesController < ApplicationController
 
     return quiz
   end
+
+  def quiz_find
+    @quiz = Quiz.find(params[:id])
+  end
+
 
 end
