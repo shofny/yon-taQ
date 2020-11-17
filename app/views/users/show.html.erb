@@ -2,7 +2,7 @@
 <%= "#{current_user.name}さんのマイページ"%>
 </h3>
 <br>
-
+<div>
 <h4>
 投稿した問題一覧
 </h4>
@@ -16,9 +16,16 @@
     <tr>
       <td><%= "#{q.quiz.truncate(15)}" %></td>
       <td><%= link_to "編集", edit_quiz_path(q.id) %></td>
-      <td>削除</td>
+      <td><%= link_to "削除", quiz_path(q.id), method: :delete, data: {
+        confirm: '本当にこの問題を削除しますか?',
+        cancel: "やめる",
+        commit: "削除する"
+        } %></td>
     </tr>
+    </table>
     <% end %>
   <% end %>
 </h4>
+</div>
 
+<%= link_to "トップ画面に戻る", root_path %>
