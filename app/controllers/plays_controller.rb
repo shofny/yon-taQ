@@ -1,7 +1,6 @@
 class PlaysController < ApplicationController
-
   def index
-    @rand_quiz = Quiz.order("RAND()").limit(5)
+    @rand_quiz = Quiz.order('RAND()').limit(5)
     session[:rand_quiz] = @rand_quiz
     session[:quiz_no] = 0
     session[:correct_num] = 0
@@ -15,10 +14,8 @@ class PlaysController < ApplicationController
     else
       @quizzes = session[:rand_quiz][session[:quiz_no]]
     end
-
   end
 
   def result
   end
-
 end
