@@ -18,10 +18,10 @@
       <% end %>
       <h4>答えにする選択肢を一つだけ選んでチェックをつけてください。</h4>
 
-      <label><%= radio_button_tag :select_anwser, "0", checked: true %>選択肢1</label><br>
-      <label><%= radio_button_tag :select_anwser, "1" %>選択肢2</label><br>
-      <label><%= radio_button_tag :select_anwser, "2" %>選択肢3</label><br>
-      <label><%= radio_button_tag :select_anwser, "3" %>選択肢4</label>
+      <label><%= radio_button_tag :select_anwser, "0", checked = @quiz.choices[0].answer_is == true %>選択肢1</label><br>
+      <label><%= radio_button_tag :select_anwser, "1", checked = @quiz.choices[1].answer_is == true %>選択肢2</label><br>
+      <label><%= radio_button_tag :select_anwser, "2", checked = @quiz.choices[2].answer_is == true %>選択肢3</label><br>
+      <label><%= radio_button_tag :select_anwser, "3", checked = @quiz.choices[3].answer_is == true %>選択肢4</label>
 
       <div>
         <%= f.submit "問題登録" %>
